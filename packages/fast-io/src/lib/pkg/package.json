@@ -1,0 +1,5 @@
+{
+    "private": true,
+    "main": "fast_io_lib.js",
+    "types": "fast_io_lib.d.ts"
+}
