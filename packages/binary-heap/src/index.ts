@@ -2,7 +2,7 @@ import { Heap1, Heap2 } from "./lib/pkg";
 
 type Heap = Heap1 | Heap2;
 
-class BinaryHeap<T, H extends Heap> {
+class _BinaryHeap<T, H extends Heap> {
     protected heap: H;
 
     constructor(heap: H) {
@@ -30,13 +30,21 @@ class BinaryHeap<T, H extends Heap> {
     }
 }
 
-export class BinaryHeap1<T> extends BinaryHeap<T, Heap1> {
+export class BinaryHeap<T> extends _BinaryHeap<T, Heap1> {
+    constructor() {
+        super(new Heap1());
+    }
+
     public push(value: T, key: number): void {
         this.heap.push(value, key);
     }
 }
 
-export class BinaryHeap2<T> extends BinaryHeap<T, Heap2> {
+export class BinaryHeapPair<T> extends _BinaryHeap<T, Heap2> {
+    constructor() {
+        super(new Heap2());
+    }
+
     public push(value: T, key1: number, key2: number): void {
         this.heap.push(value, key1, key2);
     }

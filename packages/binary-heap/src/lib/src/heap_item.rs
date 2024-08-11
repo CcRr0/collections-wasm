@@ -8,7 +8,7 @@ pub struct Item<T> {
 
 impl<T: Ord> Ord for Item<T> {
     fn cmp(&self, other: &Self) -> Ordering {
-        other.key.cmp(&self.key)
+        self.key.cmp(&other.key)
     }
 }
 
