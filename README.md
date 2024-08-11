@@ -6,3 +6,6 @@ https://www.npmjs.com/package/@collections-wasm/binary-heap
 
 https://github.com/CcRr0/collections-wasm/tree/main/packages/vec-deque  
 https://www.npmjs.com/package/@collections-wasm/vec-deque  
+
+https://github.com/CcRr0/collections-wasm/tree/main/packages/vec  
+https://www.npmjs.com/package/@collections-wasm/vec  
