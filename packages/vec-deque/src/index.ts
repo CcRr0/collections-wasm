@@ -11,6 +11,10 @@ export class VecDeque<T> {
         return this.deque.is_empty();
     }
 
+    public reserve(additional: number): void {
+        this.deque.reserve(additional);
+    }
+
     public peekFront(): T | null {
         return this.isEmpty() ? null : this.deque.front_unwrap();
     }

@@ -27,6 +27,11 @@ impl Deque {
     }
 
     #[wasm_bindgen]
+    pub fn reserve(&mut self, additional: usize) -> () {
+        self.deque.reserve(additional);
+    }
+
+    #[wasm_bindgen]
     pub fn front_unwrap(&self) -> JsValue {
         self.deque.front().unwrap().clone()
     }
