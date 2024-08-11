@@ -17,7 +17,11 @@ impl Reader {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
         Self {
-            buffer: js_read_file_sync(0),
+            buffer: {
+                let mut buf: Vec<u8> = js_read_file_sync(0);
+                buf.push(0u8);
+                buf
+            },
             index: 0,
         }
     }
@@ -56,7 +60,7 @@ impl Reader {
     pub fn read_u32(&mut self) -> u32 {
         let mut cur: u8 = self.trim();
         let mut res: u32 = 0;
-        while cur & 16u8 != 0 {
+        while cur >= 48u8 && cur <= 57u8 {
             res = res * 10 + (cur - 48u8) as u32;
             cur = self.read();
         }
@@ -67,7 +71,7 @@ impl Reader {
     pub fn read_u64(&mut self) -> u64 {
         let mut cur: u8 = self.trim();
         let mut res: u64 = 0;
-        while cur & 16u8 != 0 {
+        while cur >= 48u8 && cur <= 57u8 {
             res = res * 10 + (cur - 48u8) as u64;
             cur = self.read();
         }
@@ -88,7 +92,7 @@ impl Reader {
     pub fn read_i32(&mut self) -> i32 {
         let (mut cur, sgn): (u8, bool) = self.trim_sgn();
         let mut res: i32 = 0;
-        while cur & 16u8 != 0 {
+        while cur >= 48u8 && cur <= 57u8 {
             res = res * 10 + (cur - 48u8) as i32;
             cur = self.read();
         }
@@ -99,7 +103,7 @@ impl Reader {
     pub fn read_i64(&mut self) -> i64 {
         let (mut cur, sgn): (u8, bool) = self.trim_sgn();
         let mut res: i64 = 0;
-        while cur & 16u8 != 0 {
+        while cur >= 48u8 && cur <= 57u8 {
             res = res * 10 + (cur - 48u8) as i64;
             cur = self.read();
         }
