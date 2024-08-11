@@ -1,6 +1,6 @@
 {
-    "name": "@collections-wasm/fast-io",
-    "version": "1.0.1",
+    "name": "@collections-wasm/binary-heap",
+    "version": "1.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {

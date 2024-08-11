@@ -3,7 +3,7 @@ import { Reader, Writer } from "./lib/pkg";
 let reader: Reader | null = null;
 let writer: Writer | null = null;
 
-export function initializeWasm(writerCapacity: number = 1 << 16): void {
+export function initialize(writerCapacity: number = 1 << 16): void {
     reader = new Reader();
     writer = new Writer(writerCapacity);
     process.on("exit", (): void => {
