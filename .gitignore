@@ -1,2 +1,7 @@
-.idea/
-node_modules/
+**/.DS_Store
+**/.idea/
+**/node_modules/
+packages/*/dist/
+packages/*/src/lib/target/
+packages/*/src/lib/pkg/
+packages/*/src/lib/Cargo.lock

@@ -19,6 +19,10 @@ export function readBigInt(signed: boolean = true): bigint {
     return signed ? reader!.read_i64() : reader!.read_u64();
 }
 
+export function readString(): string {
+    return reader!.read_string();
+}
+
 export function writeInteger(n: number): void {
     n >= 0 ? writer!.write_u32(n) : writer!.write_i32(n);
 }

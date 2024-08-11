@@ -44,7 +44,12 @@ impl Reader {
 
     #[wasm_bindgen]
     pub fn read_string(&mut self) -> String {
-        todo!()
+        let mut cur: u8 = self.trim();
+        let start: usize = self.index - 1;
+        while cur != 10u8 && cur != 32u8 && cur != 0u8 {
+            cur = self.read();
+        }
+        String::from_utf8_lossy(&self.buffer[start..self.index - 1]).to_string()
     }
 
     #[wasm_bindgen]
