@@ -4,12 +4,12 @@
         "packages/fast-io",
         "packages/binary-heap",
         "packages/vec-deque",
-        "packages/segment-tree",
         "packages/hash-map",
         "packages/hash-set",
         "packages/btree-map",
         "packages/btree-set",
-        "packages/vec"
+        "packages/vec",
+        "packages/seg-tree"
     ],
     "devDependencies": {
         "@types/node": "^22.1.0",
