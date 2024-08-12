@@ -2,40 +2,47 @@ import { Deque } from "./lib/pkg";
 
 export class VecDeque<T> {
     private deque: Deque = new Deque();
-
-    public len(): number {
-        return this.deque.len();
-    }
-
-    public isEmpty(): boolean {
-        return this.deque.is_empty();
-    }
+    public length: number = 0;
 
     public reserve(additional: number): void {
         this.deque.reserve(additional);
     }
 
+    public isEmpty(): boolean {
+        return this.length === 0;
+    }
+
     public peekFront(): T | null {
-        return this.isEmpty() ? null : this.deque.front_unwrap();
+        return this.length === 0 ? null : this.deque.front_unwrap() as T;
     }
 
     public peekBack(): T | null {
-        return this.isEmpty() ? null : this.deque.back_unwrap();
+        return this.length === 0 ? null : this.deque.back_unwrap() as T;
     }
 
     public pushFront(value: T): void {
+        this.length += 1;
         this.deque.push_front(value);
     }
 
     public pushBack(value: T): void {
+        this.length += 1;
         this.deque.push_back(value);
     }
 
     public popFront(): T | null {
-        return this.isEmpty() ? null : this.deque.pop_front_unwrap();
+        if (this.length === 0) {
+            return null;
+        }
+        this.length -= 1;
+        return this.deque.pop_front_unwrap() as T;
     }
 
     public popBack(): T | null {
-        return this.isEmpty() ? null : this.deque.pop_back_unwrap();
+        if (this.length === 0) {
+            return null;
+        }
+        this.length -= 1;
+        return this.deque.pop_back_unwrap() as T;
     }
 }

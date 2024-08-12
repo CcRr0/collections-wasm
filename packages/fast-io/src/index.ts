@@ -40,11 +40,11 @@ export function writeByte(byte: number): void {
 }
 
 export function writeSpace(): void {
-    writeByte(32);
+    writer!.write_byte(32);
 }
 
 export function writeLine(): void {
-    writeByte(10);
+    writer!.write_byte(10);
 }
 
 export function flush(): void {

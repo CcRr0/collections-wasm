@@ -11,18 +11,8 @@ impl Vector {
     #[wasm_bindgen(constructor)]
     pub fn new(value: JsValue, size: usize) -> Self {
         Self {
-            vec: std::iter::repeat(value.clone()).take(size).collect(),
+            vec: vec![value; size],
         }
-    }
-
-    #[wasm_bindgen]
-    pub fn len(&self) -> usize {
-        self.vec.len()
-    }
-
-    #[wasm_bindgen]
-    pub fn is_empty(&self) -> bool {
-        self.vec.is_empty()
     }
 
     #[wasm_bindgen]

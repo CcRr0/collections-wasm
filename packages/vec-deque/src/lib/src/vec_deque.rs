@@ -17,16 +17,6 @@ impl Deque {
     }
 
     #[wasm_bindgen]
-    pub fn len(&self) -> usize {
-        self.deque.len()
-    }
-
-    #[wasm_bindgen]
-    pub fn is_empty(&self) -> bool {
-        self.deque.is_empty()
-    }
-
-    #[wasm_bindgen]
     pub fn reserve(&mut self, additional: usize) -> () {
         self.deque.reserve(additional);
     }

@@ -4,28 +4,35 @@ type Heap = Heap1 | Heap2;
 
 class _BinaryHeap<T, H extends Heap> {
     protected heap: H;
+    public length: number;
 
     constructor(heap: H) {
         this.heap = heap;
+        this.length = 0;
     }
 
-    public len(): number {
-        return this.heap.len();
+    public reserve(additional: number): void {
+        this.heap.reserve(additional);
     }
 
     public isEmpty(): boolean {
-        return this.heap.is_empty();
+        return this.length === 0;
     }
 
     public peek(): T | null {
-        return this.isEmpty() ? null : this.heap.peek_unwrap();
+        return this.length === 0 ? null : this.heap.peek_unwrap() as T;
     }
 
     public pop(): T | null {
-        return this.isEmpty() ? null : this.heap.pop_unwrap();
+        if (this.length === 0) {
+            return null;
+        }
+        this.length -= 1;
+        return this.heap.pop_unwrap() as T;
     }
 
     public clear(): void {
+        this.length = 0;
         this.heap.clear();
     }
 }
@@ -40,7 +47,7 @@ export class BinaryHeap<T> extends _BinaryHeap<T, Heap1> {
     }
 }
 
-export class BinaryHeapPair<T> extends _BinaryHeap<T, Heap2> {
+export class BinaryHeap2D<T> extends _BinaryHeap<T, Heap2> {
     constructor() {
         super(new Heap2());
     }

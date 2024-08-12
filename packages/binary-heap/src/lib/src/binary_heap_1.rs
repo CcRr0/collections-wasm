@@ -19,13 +19,8 @@ impl Heap1 {
     }
 
     #[wasm_bindgen]
-    pub fn len(&self) -> usize {
-        self.heap.len()
-    }
-
-    #[wasm_bindgen]
-    pub fn is_empty(&self) -> bool {
-        self.heap.is_empty()
+    pub fn reserve(&mut self, additional: usize) -> () {
+        self.heap.reserve(additional);
     }
 
     #[wasm_bindgen]
