@@ -5,12 +5,12 @@ use std::collections::BinaryHeap;
 use crate::heap_item::Item;
 
 #[wasm_bindgen]
-pub struct Heap1 {
+pub struct Heap32_1 {
     heap: BinaryHeap<Item<i32>>,
 }
 
 #[wasm_bindgen]
-impl Heap1 {
+impl Heap32_1 {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
         Self {
