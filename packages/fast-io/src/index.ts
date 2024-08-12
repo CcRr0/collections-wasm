@@ -11,12 +11,20 @@ export function initialize(writerCapacity: number = 1 << 16): void {
     });
 }
 
-export function readInt32(signed: boolean = true): number {
-    return signed ? reader!.read_i32() : reader!.read_u32();
+export function readInt32(): number {
+    return reader!.read_i32();
 }
 
-export function readInt64(signed: boolean = true): bigint {
-    return signed ? reader!.read_i64() : reader!.read_u64();
+export function readUInt32(): number {
+    return reader!.read_u32();
+}
+
+export function readInt64(): bigint {
+    return reader!.read_i64();
+}
+
+export function readUInt64(): bigint {
+    return reader!.read_u64();
 }
 
 export function readString(): string {
@@ -24,11 +32,19 @@ export function readString(): string {
 }
 
 export function writeInt32(n: number): void {
-    n >= 0 ? writer!.write_u32(n) : writer!.write_i32(n);
+    writer!.write_i32(n);
+}
+
+export function writeUInt32(n: number): void {
+    writer!.write_u32(n);
 }
 
 export function writeInt64(n: bigint): void {
-    n >= 0 ? writer!.write_u64(n) : writer!.write_i64(n);
+    writer!.write_i64(n);
+}
+
+export function writeUInt64(n: bigint): void {
+    writer!.write_u64(n);
 }
 
 export function writeString(str: string): void {
