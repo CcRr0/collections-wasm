@@ -21,11 +21,11 @@ export class Vec<T> {
             this.vector.reserve(length);
             if ((valueOrMapFn as (() => T) | ((index: number) => T)).length === 0) {
                 for (let i: number = 0; i < length; i++) {
-                    this.vector.set(i, (valueOrMapFn as () => T)());
+                    this.vector.push((valueOrMapFn as () => T)());
                 }
             } else {
                 for (let i: number = 0; i < length; i++) {
-                    this.vector.set(i, (valueOrMapFn as (index: number) => T)(i));
+                    this.vector.push((valueOrMapFn as (index: number) => T)(i));
                 }
             }
         } else {
