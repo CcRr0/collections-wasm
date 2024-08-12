@@ -12,16 +12,16 @@ pub struct SegmentTreeInt64 {
 #[wasm_bindgen]
 impl SegmentTreeInt64 {
     #[wasm_bindgen(constructor)]
-    pub fn new(init: Vec<i64>, op: u8) -> Self {
+    pub fn new(init: Vec<i64>, op: u8, modulus: Option<i64>) -> Self {
         let n: usize = init.len();
         let mut seg: Vec<i64> = vec![0; n << 1];
 
         let operator: Box<dyn Fn(i64, i64) -> i64> = Box::new(move |mut x, mut y|
             match op {
-                0 => x + y,
+                0 => if let Some(m) = modulus { (x + y) % m } else { x + y },
                 1 => max(x, y),
                 2 => min(x, y),
-                3 => x * y,
+                3 => if let Some(m) = modulus { (x * y) % m } else { x * y },
                 4 => {
                     while y != 0 {
                         (x, y) = (y, x % y);

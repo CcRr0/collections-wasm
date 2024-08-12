@@ -12,16 +12,16 @@ pub struct SegmentTreeUInt32 {
 #[wasm_bindgen]
 impl SegmentTreeUInt32 {
     #[wasm_bindgen(constructor)]
-    pub fn new(init: Vec<u32>, op: u8) -> Self {
+    pub fn new(init: Vec<u32>, op: u8, modulus: Option<u32>) -> Self {
         let n: usize = init.len();
         let mut seg: Vec<u32> = vec![0; n << 1];
 
         let operator: Box<dyn Fn(u32, u32) -> u32> = Box::new(move |mut x, mut y|
             match op {
-                0 => x + y,
+                0 => if let Some(m) = modulus { (x + y) % m } else { x + y },
                 1 => max(x, y),
                 2 => min(x, y),
-                3 => x * y,
+                3 => if let Some(m) = modulus { (x * y) % m } else { x * y },
                 4 => {
                     while y != 0 {
                         (x, y) = (y, x % y);

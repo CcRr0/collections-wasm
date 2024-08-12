@@ -22,13 +22,13 @@ class _SegTree32<T extends SegmentTree32> {
 }
 
 export class SegTreeInt32 extends _SegTree32<SegmentTreeInt32> {
-    constructor(init: Int32Array | number[], op: keyof typeof Operator) {
-        super(new SegmentTreeInt32(init instanceof Int32Array ? init : new Int32Array(init), Operator[op]), init.length);
+    constructor(init: Int32Array | number[], op: keyof typeof Operator, mod?: number) {
+        super(new SegmentTreeInt32(init instanceof Int32Array ? init : new Int32Array(init), Operator[op], mod), init.length);
     }
 }
 
 export class SegTreeUInt32 extends _SegTree32<SegmentTreeUInt32> {
-    constructor(init: Uint32Array | number[], op: keyof typeof Operator) {
-        super(new SegmentTreeUInt32(init instanceof Uint32Array ? init : new Uint32Array(init), Operator[op]), init.length);
+    constructor(init: Uint32Array | number[], op: keyof typeof Operator, mod?: number) {
+        super(new SegmentTreeUInt32(init instanceof Uint32Array ? init : new Uint32Array(init), Operator[op], mod), init.length);
     }
 }
