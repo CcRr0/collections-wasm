@@ -7,14 +7,30 @@ export class Vec<T> {
     [index: number]: T;
 
     constructor();
+    constructor(length: number, mapFn: (index: number) => T);
+    constructor(length: number, mapFn: () => T);
     constructor(length: number, value: T);
 
-    constructor(length: number = 0, value: T | null = null) {
-        if (length > 0 && value === null) {
+    constructor(length: number = 0, valueOrMapFn?: T | (() => T) | ((index: number) => T)) {
+        if (length > 0 && valueOrMapFn === undefined) {
             throw new Error();
         }
-        this.vector = new Vector(value, length);
         this.length = length;
+        if (typeof valueOrMapFn === "function") {
+            this.vector = new Vector(null, 0);
+            this.vector.reserve(length);
+            if ((valueOrMapFn as (() => T) | ((index: number) => T)).length === 0) {
+                for (let i: number = 0; i < length; i++) {
+                    this.vector.set(i, (valueOrMapFn as () => T)());
+                }
+            } else {
+                for (let i: number = 0; i < length; i++) {
+                    this.vector.set(i, (valueOrMapFn as (index: number) => T)(i));
+                }
+            }
+        } else {
+            this.vector = new Vector(valueOrMapFn as T, length);
+        }
         return new Proxy(this, {
             get: (target, prop) => {
                 if (typeof prop === "string" && !isNaN(Number(prop))) {
