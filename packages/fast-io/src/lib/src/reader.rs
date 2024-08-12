@@ -9,6 +9,7 @@ extern "C" {
 #[wasm_bindgen]
 pub struct Reader {
     buffer: Vec<u8>,
+    size: usize,
     index: usize,
 }
 
@@ -16,12 +17,11 @@ pub struct Reader {
 impl Reader {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
+        let buffer: Vec<u8> = js_read_file_sync(0);
+        let size: usize = buffer.len();
         Self {
-            buffer: {
-                let mut buf: Vec<u8> = js_read_file_sync(0);
-                buf.push(0u8);
-                buf
-            },
+            buffer,
+            size,
             index: 0,
         }
     }
@@ -29,7 +29,11 @@ impl Reader {
     #[inline(always)]
     fn read(&mut self) -> u8 {
         self.index += 1;
-        self.buffer[self.index - 1]
+        if self.index - 1 == self.size {
+            0u8
+        } else {
+            self.buffer[self.index - 1]
+        }
     }
 
     #[inline(always)]

@@ -11,7 +11,7 @@ impl Vector {
     #[wasm_bindgen(constructor)]
     pub fn new(value: JsValue, size: usize) -> Self {
         Self {
-            vec: vec![value; size],
+            vec: std::iter::repeat(value.clone()).take(size).collect(),
         }
     }
 
