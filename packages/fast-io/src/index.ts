@@ -11,11 +11,11 @@ export function initialize(writerCapacity: number = 1 << 16): void {
     });
 }
 
-export function readInteger(signed: boolean = true): number {
+export function readInt32(signed: boolean = true): number {
     return signed ? reader!.read_i32() : reader!.read_u32();
 }
 
-export function readBigInt(signed: boolean = true): bigint {
+export function readInt64(signed: boolean = true): bigint {
     return signed ? reader!.read_i64() : reader!.read_u64();
 }
 
@@ -23,11 +23,11 @@ export function readString(): string {
     return reader!.read_string();
 }
 
-export function writeInteger(n: number): void {
+export function writeInt32(n: number): void {
     n >= 0 ? writer!.write_u32(n) : writer!.write_i32(n);
 }
 
-export function writeBigInt(n: bigint): void {
+export function writeInt64(n: bigint): void {
     n >= 0 ? writer!.write_u64(n) : writer!.write_i64(n);
 }
 

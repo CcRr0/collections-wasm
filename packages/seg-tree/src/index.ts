@@ -12,7 +12,7 @@ class _SegTree<T extends SegmentTree> {
     }
 }
 
-export class SegTree32 extends _SegTree<SegmentTreeInt32> {
+export class SegTreeInt32 extends _SegTree<SegmentTreeInt32> {
     constructor(init: Int32Array | number[]) {
         super(new SegmentTreeInt32(init instanceof Int32Array ? init : new Int32Array(init)), init.length);
     }
@@ -26,7 +26,7 @@ export class SegTree32 extends _SegTree<SegmentTreeInt32> {
     }
 }
 
-export class SegTree64 extends _SegTree<SegmentTreeInt64> {
+export class SegTreeInt64 extends _SegTree<SegmentTreeInt64> {
     constructor(init: BigInt64Array | bigint[]) {
         super(new SegmentTreeInt64(init instanceof BigInt64Array ? init : new BigInt64Array(init)), init.length);
     }

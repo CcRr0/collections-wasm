@@ -9,3 +9,6 @@ https://www.npmjs.com/package/@collections-wasm/vec-deque
 
 https://github.com/CcRr0/collections-wasm/tree/main/packages/vec  
 https://www.npmjs.com/package/@collections-wasm/vec  
+
+https://github.com/CcRr0/collections-wasm/tree/main/packages/seg-tree  
+https://www.npmjs.com/package/@collections-wasm/seg-tree  
