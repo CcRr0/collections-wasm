@@ -1,0 +1,21 @@
+{
+    "name": "@collections-wasm/btree-multiset",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "../../build-package.sh"
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CcRr0/collections-wasm.git"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^22.1.0",
+        "typescript": "^5.5.4"
+    }
+}
