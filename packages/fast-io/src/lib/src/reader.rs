@@ -46,6 +46,16 @@ impl Reader {
     }
 
     #[wasm_bindgen]
+    pub fn is_eol(&mut self) -> bool {
+        let mut cur: u8 = self.read();
+        while cur == 32u8 {
+            cur = self.read();
+        }
+        self.index -= 1;
+        cur == 10u8 || cur == 0u8
+    }
+
+    #[wasm_bindgen]
     pub fn read_line(&mut self) -> String {
         todo!()
     }

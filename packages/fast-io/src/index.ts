@@ -11,6 +11,10 @@ export function initialize(writerCapacity: number = 1 << 16): void {
     });
 }
 
+export function isEOL(): boolean {
+    return reader!.is_eol();
+}
+
 export function readInt32(): number {
     return reader!.read_i32();
 }
