@@ -43,6 +43,7 @@ export class BinaryHeapInt32<T> extends _BinaryHeap<T, Heap32_1> {
     }
 
     public push(value: T, key: number): void {
+        this.length += 1;
         this.heap.push(value, key);
     }
 }
@@ -53,6 +54,7 @@ export class BinaryHeapInt32Pair<T> extends _BinaryHeap<T, Heap32_2> {
     }
 
     public push(value: T, key1: number, key2: number): void {
+        this.length += 1;
         this.heap.push(value, key1, key2);
     }
 }
