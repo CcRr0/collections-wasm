@@ -46,7 +46,7 @@ impl Reader {
     }
 
     #[wasm_bindgen]
-    pub fn is_eol(&mut self) -> bool {
+    pub fn end_of_line(&mut self) -> bool {
         let mut cur: u8 = self.read();
         while cur == 32u8 {
             cur = self.read();
@@ -56,11 +56,8 @@ impl Reader {
     }
 
     #[wasm_bindgen]
-    pub fn is_eof(&mut self) -> bool {
-        let mut cur: u8 = self.read();
-        while cur == 32u8 {
-            cur = self.read();
-        }
+    pub fn end_of_file(&mut self) -> bool {
+        let cur: u8 = self.trim();
         self.index -= 1;
         cur == 0u8
     }
@@ -77,6 +74,7 @@ impl Reader {
         while cur != 10u8 && cur != 32u8 && cur != 0u8 {
             cur = self.read();
         }
+        self.index -= 1;
         String::from_utf8_lossy(&self.buffer[start..self.index - 1]).to_string()
     }
 
@@ -88,6 +86,7 @@ impl Reader {
             res = res * 10 + (cur - 48u8) as u32;
             cur = self.read();
         }
+        self.index -= 1;
         res
     }
 
@@ -99,6 +98,7 @@ impl Reader {
             res = res * 10 + (cur - 48u8) as u64;
             cur = self.read();
         }
+        self.index -= 1;
         res
     }
 
@@ -120,6 +120,7 @@ impl Reader {
             res = res * 10 + (cur - 48u8) as i32;
             cur = self.read();
         }
+        self.index -= 1;
         if sgn { res } else { -res }
     }
 
@@ -131,6 +132,7 @@ impl Reader {
             res = res * 10 + (cur - 48u8) as i64;
             cur = self.read();
         }
+        self.index -= 1;
         if sgn { res } else { -res }
     }
 }
