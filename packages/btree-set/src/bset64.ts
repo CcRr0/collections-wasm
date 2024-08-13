@@ -27,6 +27,14 @@ class _BTreeSet64<T extends BinaryTreeSet64> {
         return this.length === 0 ? null : this.set.last_unwrap();
     }
 
+    public rangeFirst(min: bigint, max: bigint): bigint | null {
+        return this.set.range_first(min, max) || null;
+    }
+
+    public rangeLast(min: bigint, max: bigint): bigint | null {
+        return this.set.range_last(min, max) || null;
+    }
+
     public insert(value: bigint): boolean {
         if (this.set.insert(value)) {
             this.length += 1;

@@ -31,6 +31,16 @@ impl BinaryTreeSetInt64 {
     }
 
     #[wasm_bindgen]
+    pub fn range_first(&self, min: i64, max: i64) -> Option<i64> {
+        self.set.range(min..=max).next().copied()
+    }
+
+    #[wasm_bindgen]
+    pub fn range_last(&self, min: i64, max: i64) -> Option<i64> {
+        self.set.range(min..=max).next_back().copied()
+    }
+
+    #[wasm_bindgen]
     pub fn insert(&mut self, value: i64) -> bool {
         self.set.insert(value)
     }

@@ -27,6 +27,14 @@ class _BTreeSet32<T extends BinaryTreeSet32> {
         return this.length === 0 ? null : this.set.last_unwrap();
     }
 
+    public rangeFirst(min: number, max: number): number | null {
+        return this.set.range_first(min, max) || null;
+    }
+
+    public rangeLast(min: number, max: number): number | null {
+        return this.set.range_last(min, max) || null;
+    }
+
     public insert(value: number): boolean {
         if (this.set.insert(value)) {
             this.length += 1;
