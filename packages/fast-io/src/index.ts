@@ -15,6 +15,10 @@ export function isEOL(): boolean {
     return reader!.is_eol();
 }
 
+export function isEOF(): boolean {
+    return reader!.is_eof();
+}
+
 export function readInt32(): number {
     return reader!.read_i32();
 }
